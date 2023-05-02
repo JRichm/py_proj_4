@@ -15,6 +15,7 @@ class User(db.Model):
         self.username = username
         self.password = password
     
+    
 class Teams(db.Model):
     __tablename__ = 'teams'
     team_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -24,6 +25,7 @@ class Teams(db.Model):
     def __init__(self, team_name, user_id):
         self.team_name = team_name
         self.user_id = user_id
+    
     
 class Projects(db.Model):
     __tablename__ = 'projects'
@@ -41,7 +43,7 @@ class Projects(db.Model):
             self.description = description
         else:
             self.description = 'No description'
-    
+            
     
 def connect_to_db(app):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["POSTGRES_URI"]
@@ -49,9 +51,10 @@ def connect_to_db(app):
     db.app = app
     db.init_app(app)
         
+        
 if __name__ == "__main__":
     from flask import Flask
     app = Flask(__name__)
     with app.app_context():    
         connect_to_db(app)
-        print('Connected to db...') 
+        print('Connected to db...')
