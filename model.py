@@ -55,6 +55,6 @@ def connect_to_db(app):
 if __name__ == "__main__":
     from flask import Flask
     app = Flask(__name__)
-    with app.app_context():    
+    with app.app_context():
         connect_to_db(app)
         print('Connected to db...')
